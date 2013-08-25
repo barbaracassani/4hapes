@@ -1,14 +1,12 @@
 require = {
     baseUrl : 'src',
-/*    shim : {
-        'raphael': {
-            exports: 'Raphael',
-            dept : ['eve']
+    shim: {
+        d3: {
+            exports: 'd3'
         }
-    },*/
+    },
     paths : {
-        'eve' : '../bower_components/raphael/raphael',
-        'raphael' : '../bower_components/raphael/raphael',
+        'd3' : '../bower_components/d3/d3',
         'jquery' : '../bower_components/jquery/jquery'
     }
 };

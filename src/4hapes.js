@@ -1,13 +1,13 @@
-define(['baseShape', 'accessories', 'jquery', 'raphael'], function(BS, helpers, $, Raphael) {
+define(['baseShape', 'accessories', 'jquery', 'd3'], function(BS, helpers, $, d3) {
     var Game = function(){
         this.init();
-        this.frequency = 10000;
+        this.frequency = 30000;
         this.points = 0;
         this.currentLevel = 0;
         this.currentLoop = null;
         this.currentShapes = {};
-        this.field = null;
-        this.fieldElement = document.getElementById('gamefield');
+        this.fieldElement = '#gamefield';
+        this.field = d3.select(this.fieldElement);
     };
 
     Game.prototype.init = function() {
@@ -16,7 +16,7 @@ define(['baseShape', 'accessories', 'jquery', 'raphael'], function(BS, helpers, 
     };
 
     Game.prototype.render = function() {
-        this.field = Raphael(0, 0, 500, 500);
+
     };
 
     Game.prototype.startLevel = function() {
@@ -41,7 +41,10 @@ define(['baseShape', 'accessories', 'jquery', 'raphael'], function(BS, helpers, 
     };
 
     Game.prototype.executeTimeLoop = function() {
-        this.currentShapes[helpers.uuid()] = new BS();
+        var uuid = helpers.uuid();
+        this.currentShapes[uuid] = new BS(this.field);
+        this.currentShape = this.currentShapes[uuid];
+        this.currentShape.move();
     };
 
     return Game;
